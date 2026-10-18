@@ -92,3 +92,13 @@ def test_preflight_waits_without_spending_turn(harness, monkeypatch):
     monkeypatch.setattr(run, 'get_usage', lambda **kw: next(values))
     assert run.execute(args('task')) == 0
     assert len(calls(harness)) == 1
+
+
+def test_fatal_runtime_error_sends_failed_notification(harness, monkeypatch):
+    sent = []
+    monkeypatch.setattr(run, 'notify', sent.append)
+    monkeypatch.setenv('FAKE_MODE', 'no-id')
+    monkeypatch.setattr('sys.argv', ['codex-run', '--resume-buffer', '0', '--retry-backoff', '0',
+                                     '--max-retries', '1', '--lang', 'tr', 'task'])
+    assert run.main() == 1
+    assert sent == [run.message('failed', 'tr')]

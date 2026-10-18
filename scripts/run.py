@@ -263,6 +263,8 @@ def main():
         return 130
     except (OSError, ValueError, RuntimeError) as exc:
         print(str(exc), file=sys.stderr)
+        if isinstance(exc, RuntimeError):
+            notify(message('failed', args.lang or 'en'))
         return 1
 
 
