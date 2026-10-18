@@ -1,8 +1,13 @@
 # codex-quota-guard
 
+[![CI](https://github.com/BunyaminGP/codex-quota-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/BunyaminGP/codex-quota-guard/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Quota checkpoints for ordinary Codex CLI sessions and a runner that waits for
 subscription limits to reset, then resumes the exact saved thread. Adapted from
 [cc-quota-guard](https://github.com/BunyaminGP/cc-quota-guard).
+
+*[Türkçe için README.tr.md](README.tr.md)*
 
 Requires Python 3.10+, Codex CLI with hooks and app-server support, and an existing
 ChatGPT sign-in. CLI contracts were checked against 0.162.1. No Python runtime
